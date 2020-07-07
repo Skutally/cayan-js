@@ -20,7 +20,7 @@ describe("GeniusClient", () => {
   };
   let client: GeniusClient;
   // const genius = new GeniusClient(config);
-  const CEDUrl = `https://${config.CEDHostname}:8443`;
+  const CEDUrl = `https://${config.CEDHostname}`;
 
   before(async () => {
     client = await GeniusClient.createInstance(config);
