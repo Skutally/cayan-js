@@ -91,7 +91,7 @@ export default class GeniusClient {
       if (r.status !== 400) {
         return r.json()
       } else {
-        return new Error("Error initiating transaction")
+        return r.text()
       }
     }).catch(e => e);
   }
