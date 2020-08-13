@@ -1,1 +1,1 @@
-export default function CreateSoapClientWithWSDL(definition: string, uri: string): Promise<unknown>;
+export default function CreateSoapClientWithWSDL(definition: string, uri: string): Promise<{}>;

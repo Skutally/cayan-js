@@ -87,9 +87,13 @@ export default class GeniusClient {
     const queryString = makeQueryString(params);
     const url = `https://${this.config.CEDHostname}/v2/pos?${queryString}`;
 
-    return fetch(url)
-      .then(r => r.json())
-      .catch(e => e);
+    return fetch(url).then(r => {
+      try {
+        return r.json()
+      } catch (e) {
+        return new Error("Error initiating transaction")
+      }
+    }).catch(e => e);
   }
 
   /**

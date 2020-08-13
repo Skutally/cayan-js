@@ -162,6 +162,21 @@ describe("GeniusClient", () => {
       const result = await client.InitiateTransaction(TransportKey);
       expect(result instanceof Error).to.be.true;
     });
+
+    it("returns an error for failed fetch (XML)", async () => {
+      const TransportKey = "abc-123";
+
+      nock(CEDUrl)
+        .get("/v2/pos")
+        .query({ TransportKey, Format: "JSON" })
+        .reply(
+          200,
+          '<?xml version="1.0" encoding="utf-8"?><Error><ErrorCode>40000</ErrorCode><Message>Invalid TransportKey : (Improper TransportKey Value)</Message></Error>'
+        );
+
+      const result = await client.InitiateTransaction(TransportKey);
+      expect(result instanceof Error).to.be.true;
+    });
   });
 
   describe("CheckStatus", () => {
