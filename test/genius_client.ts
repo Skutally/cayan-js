@@ -170,7 +170,7 @@ describe("GeniusClient", () => {
         .get("/v2/pos")
         .query({ TransportKey, Format: "JSON" })
         .reply(
-          200,
+          400,
           '<?xml version="1.0" encoding="utf-8"?><Error><ErrorCode>40000</ErrorCode><Message>Invalid TransportKey : (Improper TransportKey Value)</Message></Error>'
         );
 
