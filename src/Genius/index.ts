@@ -87,9 +87,13 @@ export default class GeniusClient {
     const queryString = makeQueryString(params);
     const url = `https://${this.config.CEDHostname}/v2/pos?${queryString}`;
 
-    return fetch(url)
-      .then(r => r.json())
-      .catch(e => e);
+    return fetch(url).then(r => {
+      if (r.status !== 400) {
+        return r.json()
+      } else {
+        return r.text()
+      }
+    }).catch(e => e);
   }
 
   /**
